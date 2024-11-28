@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet">
+    <link id="favicon" rel="icon" type="image/x-icon" href="static/favicon.ico">
+</head>
+<body>
+    <div class="container">
+        <h1>Movie Review Prediction</h1>
+        <form action="/predict" method="post">
+            <label for="review_text">Input review text:</label><br>
+            <textarea id="review_text" name="review_text" required></textarea><br><br>
+            <input type="submit" value="Predict">
+        </form>
+
+        <!-- {% if warning %}
+            <p style="color: red;">{{ warning }}</p>
+        {% endif %} -->
+
+        {% if predictions %}
+            <div class="result">
+                <h2>Prediction results:</h2>
+                <p>Rating: {{ predictions }}</p>
+                <p>Status: {{ predictions }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
