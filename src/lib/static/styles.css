@@ -1,0 +1,129 @@
+/* Basic reset to remove default margin and padding */
+body, h1, h2, p, form, label, textarea, input {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container styling */
+.container {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+/* Heading styling */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #007BFF;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Form styling */
+form {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+    margin-bottom: 1rem;
+}
+
+input[type="submit"] {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Result styling */
+.result {
+    background: #f9f9f9;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 1.5rem;
+}
+
+.result h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #007BFF;
+}
+
+.result p {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+/* Warning styling */
+p[style="color: red;"] {
+    color: #ff4d4d !important;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    textarea {
+        font-size: 0.9rem;
+    }
+
+    input[type="submit"] {
+        font-size: 0.9rem;
+    }
+
+    .result h2 {
+        font-size: 1.5rem;
+    }
+
+    .result p {
+        font-size: 1rem;
+    }
+}
