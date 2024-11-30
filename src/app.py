@@ -3,7 +3,7 @@ import uvicorn
 from fastapi import FastAPI, APIRouter, HTTPException, Request, Form
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
-from api import router
+from src.api import router
 
 
 app = FastAPI()
