@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException, Request, Form
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import JSONResponse
+from model.model import model
 
 
 router = APIRouter()
