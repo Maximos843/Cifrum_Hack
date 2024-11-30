@@ -5,9 +5,10 @@ import torch.nn.functional as F
 from transformers import BertTokenizer, BertForSequenceClassification
 from typing import Any
 from pymorphy3 import MorphAnalyzer
-from utils.s3 import get_model_weights
-from utils.preprocess import preprocess_text
-from utils.config import Consts
+
+from ..utils.s3 import get_model_weights
+from ..utils.preprocess import preprocess_text
+from ..utils.config import Consts
 
 
 class Model:
