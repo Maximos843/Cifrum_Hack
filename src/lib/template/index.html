@@ -9,22 +9,17 @@
 </head>
 <body>
     <div class="container">
-        <h1>Movie Review Prediction</h1>
+        <h1>Review Prediction</h1>
         <form action="/predict" method="post">
-            <label for="review_text">Input review text:</label><br>
+            <label for="review_text">Введите текст отзыва:</label><br>
             <textarea id="review_text" name="review_text" required></textarea><br><br>
             <input type="submit" value="Predict">
         </form>
 
-        <!-- {% if warning %}
-            <p style="color: red;">{{ warning }}</p>
-        {% endif %} -->
-
         {% if predictions %}
             <div class="result">
-                <h2>Prediction results:</h2>
-                <p>Rating: {{ predictions }}</p>
-                <p>Status: {{ predictions }}</p>
+                <h2>Результаты предсказания:</h2>
+                <p>Тональность: {{ predictions }}</p>
             </div>
         {% endif %}
     </div>

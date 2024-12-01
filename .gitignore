@@ -5,7 +5,10 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+.env
 
 .DS_Store
 
 *.idea/
+
+playground.py
