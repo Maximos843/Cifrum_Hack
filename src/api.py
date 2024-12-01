@@ -14,32 +14,31 @@ templates = Jinja2Templates(directory="src/lib/template")
 def get_db_client():
     return DatabaseClient(Consts.REVIEW_SCHEMA_NAME)
 
+
 def get_predictions(review_text: str, db_client: DatabaseClient) -> str:
     records = db_client.select_with_condition_query(Consts.REVIEW_TABLE_NAME, "review", data=review_text)
 
     if records:
-        return records[0]["sentiment"]
+        return records[0]["sentiment_text"]
     else:
-        sentiment = model.predict(review_text)[1]
-        new_record = {"review": review_text, "sentiment": sentiment}
+        predictions, best_prediction = model.predict(review_text)
+        
+        new_record = {"review": review_text, "sentiment_text": best_prediction[0], "sentiment_prob": best_prediction[1]}
         db_client.insert_query("reviews", new_record)
 
-        return sentiment
+        return best_prediction[0]
 
 
 @router.post("/predict")
 async def predict(request: Request, 
                   review_text: str = Form(...),
-                  db_client: DatabaseClient = Depends(get_db_client)):
-    # if not review_text.strip():
-    #     raise HTTPException(status_code=400, detail="Review text is empty")
-    
+                  db_client: DatabaseClient = Depends(get_db_client)):   
     try:
-        predictions = {"prediction": get_predictions(review_text, db_client)}
+        sentiment_prediction = get_predictions(review_text, db_client)
         
         if "text/html" in request.headers.get("Accept", ""):
-            return templates.TemplateResponse("index.html", {"request": request, "predictions": predictions, "title": "Predictions"})
+            return templates.TemplateResponse("index.html", {"request": request, "predictions": sentiment_prediction, "title": "Predictions"})
         else:
-            return JSONResponse(content=predictions)
+            return JSONResponse(content={"predictions": sentiment_prediction})
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

@@ -1,32 +1,40 @@
-IMAGE:=grinatom-hack
+IMAGE := grinatom-hack
+APP_DIR := ./src
+TEST_DIR := ./tests
+
+# Targets
+.PHONY: help clean build dev run test lint
 
 help:
-	@echo "help - show this help"
-	@echo "build - build docker image"
-	@echo "test - run tests"
-	@echo "lint - run lining"
-	@echo "run - start applicaion"
-	@echo "dev - start applicaion in dev mode with live reload"
-
-# TODO: fix make dev
+	@echo "Available targets:"
+	@echo "  help - Show this help message"
+	@echo "  clean - Remove the Docker image"
+	@echo "  build - Build the Docker image"
+	@echo "  dev - Start the application in development mode with live reload"
+	@echo "  run - Start the application in production mode"
+	@echo "  test - Run tests"
+	@echo "  lint - Run linting"
 
 clean:
+	@echo "Removing Docker image..."
 	@docker rmi -f ${IMAGE}
 
 build:
+	@echo "Building Docker image..."
 	@docker build -t ${IMAGE} . --network=host
 
 dev: build
-	@echo 'Run dev fastapi server.'
+	@echo "Starting development server with live reload..."
 	@docker run --rm -v $(PWD):/app \
 		-p 0.0.0.0:8000:8000 \
 		-it ${IMAGE} \
-		fastapi dev ./src/app.py
-
+		uvicorn src.app:app --host 0.0.0.0 --port 8000 --reload
+		
 run: build
-	@docker run --rm -it -p 0.0.0.0:8000:8000 ${IMAGE} 
+	@echo "Starting production server..."
+	@docker run --rm -it -p 0.0.0.0:8000:8000 ${IMAGE}
 
 test: build
-	@echo 'Run tests'
+	@echo "Running tests..."
 	@docker run --rm -v $(PWD):/app -i ${IMAGE} \
-		python -m pytest --disable-warnings -v
+		python -m pytest --disable-warnings -v ${TEST_DIR}
