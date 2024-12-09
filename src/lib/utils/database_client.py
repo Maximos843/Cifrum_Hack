@@ -46,11 +46,11 @@ class DatabaseClient:
         try:
             response = (
                 self.supabase_client.table(table_name)
-                .select('*')
+                .select('sentiment_prob, sentiment_text')
                 .eq(column_name, data)
                 .execute()
             )
-
+    
             return response.data
         except Exception as e:
             logging.error(f"Error occurred in select_with_condition_query: {e}")
