@@ -23,18 +23,23 @@ build:
 	@echo "Building Docker image..."
 	@docker build -t ${IMAGE} . --network=host
 
-dev: build
+dev:
 	@echo "Starting development server with live reload..."
 	@docker run --rm -v $(PWD):/app \
 		-p 0.0.0.0:8000:8000 \
 		-it ${IMAGE} \
 		uvicorn src.app:app --host 0.0.0.0 --port 8000 --reload
 		
-run: build
+run:
 	@echo "Starting production server..."
 	@docker run --rm -it -p 0.0.0.0:8000:8000 ${IMAGE}
 
-test: build
+test:
 	@echo "Running tests..."
 	@docker run --rm -v $(PWD):/app -i ${IMAGE} \
 		python -m pytest --disable-warnings -v ${TEST_DIR}
+
+lint:
+	@echo "Running linting..."
+	@docker run --rm -v $(PWD):/app -i ${IMAGE} \
+		flake8 ${APP_DIR}

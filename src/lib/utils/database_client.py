@@ -6,6 +6,7 @@ from .config import Consts
 
 logging.basicConfig(level=logging.ERROR)
 
+
 class DatabaseClientError(Exception):
     """Custom exception for DatabaseClient errors."""
     pass
@@ -29,7 +30,7 @@ class DatabaseClient:
         except Exception as e:
             logging.error(f"Error occurred in initializing Supabase client: {e}")
             raise DatabaseClientError(f"Failed to initialize Supabase client: {e}")
-            
+
     def insert_query(self, table_name: str, data: dict) -> None:
         try:
             response = (
@@ -41,7 +42,7 @@ class DatabaseClient:
         except Exception as e:
             logging.error(f"Error occurred in insert_query: {e}")
             raise DatabaseClientError(f"Failed to insert data into {table_name}: {e}")
-        
+
     def select_with_condition_query(self, table_name: str, column_name: str, data: str) -> str | None:
         try:
             response = (
@@ -50,9 +51,8 @@ class DatabaseClient:
                 .eq(column_name, data)
                 .execute()
             )
-    
+
             return response.data
         except Exception as e:
             logging.error(f"Error occurred in select_with_condition_query: {e}")
             raise DatabaseClientError(f"Failed to select data from {table_name}: {e}")
-

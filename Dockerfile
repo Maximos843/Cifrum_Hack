@@ -10,6 +10,8 @@ WORKDIR /app
 
 RUN python -m pip install --no-cache-dir -r requirements.txt -r requirements-dev.txt
 
+RUN pip install flake8
+
 COPY . /app
 
 EXPOSE 8000

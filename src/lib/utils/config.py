@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 @dataclass
 class Consts:
     load_dotenv()
-    
+
     id2label = {
         0: 'негативный',
         1: 'нейтральный',
@@ -17,9 +17,9 @@ class Consts:
     ENDPOINT_URL = 'https://s3.gis-1.storage.selcloud.ru'
     BUCKET_NAME = 'cifrum-model'
     MODEL_KEY = '/model/bert_model_rubert_cpu.pkl'
-    
+
     SUPABASE_URL = os.environ.get('SUPABASE_URL')
     SUPABASE_KEY = os.environ.get('SUPABASE_KEY')
-    
+
     REVIEW_SCHEMA_NAME = 'review_schema'
     REVIEW_TABLE_NAME = 'reviews'
