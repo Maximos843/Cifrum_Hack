@@ -10,7 +10,9 @@ WORKDIR /app
 
 RUN python -m pip install --no-cache-dir -r requirements.txt -r requirements-dev.txt
 
+RUN pip install flake8
+
 COPY . /app
 
-EXPOSE 8080
-CMD ["fastapi", "run", "./src/lib/app.py"]
+EXPOSE 8000
+CMD ["fastapi", "run", "./src/app.py"]

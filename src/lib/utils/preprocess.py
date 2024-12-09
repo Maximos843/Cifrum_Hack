@@ -3,7 +3,6 @@ import emoji
 from pymorphy3 import MorphAnalyzer
 
 
-
 def preprocess_text(text: str, morph: MorphAnalyzer, lemma: bool = False) -> str:
     text = re.sub(r'<.*?>', '', text)
     text = re.sub(r'httpS+|wwwS+|httpsS+', '', text)

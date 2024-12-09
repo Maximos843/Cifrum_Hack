@@ -2,9 +2,10 @@ torch==2.2.0
 numpy==1.26.4
 pymorphy3==2.0.1
 pandas==2.2.1
-fastapi
+fastapi[standard]
 nltk
 transformers
 boto3
 joblib
 emoji
+supabase

@@ -1,7 +1,8 @@
 import boto3
 from botocore.client import BaseClient
 from botocore.exceptions import ClientError, BotoCoreError
-from utils.config import Consts
+
+from .config import Consts
 
 
 def get_s3_client() -> BaseClient | None:
@@ -33,6 +34,7 @@ def handle_s3_errors(func):
             else:
                 print(f"ClientError occurred: {e}")
         except BotoCoreError as e:
+            print(Consts.ACCESS_KEY_ID, Consts.SECRET_KEY_ID)
             print(f"BotoCoreError occurred: {e}")
         return None
 
