@@ -4,9 +4,9 @@ from fastapi.responses import JSONResponse
 import asyncio
 from typing import List
 
-from .lib.utils.database_client import DatabaseClient
-from .lib.model.model import model
-from .lib.utils.config import Consts
+from src.lib.utils.database_client import DatabaseClient
+from src.lib.model.model import model
+from src.lib.utils.config import Consts
 
 
 router = APIRouter()

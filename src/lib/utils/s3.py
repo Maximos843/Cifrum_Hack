@@ -2,7 +2,7 @@ import boto3
 from botocore.client import BaseClient
 from botocore.exceptions import ClientError, BotoCoreError
 
-from .config import Consts
+from src.lib.utils.config import Consts
 
 
 def get_s3_client() -> BaseClient | None:

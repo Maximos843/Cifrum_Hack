@@ -2,7 +2,7 @@ import logging
 from supabase import create_client, Client
 from supabase.lib.client_options import ClientOptions
 
-from .config import Consts
+from src.lib.utils.config import Consts
 
 logging.basicConfig(level=logging.ERROR)
 

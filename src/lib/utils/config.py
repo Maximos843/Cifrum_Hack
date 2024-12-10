@@ -1,17 +1,15 @@
 import os
 from dataclasses import dataclass
-from dotenv import load_dotenv
 
 
 @dataclass
 class Consts:
-    load_dotenv()
-
     id2label = {
         0: 'негативный',
         1: 'нейтральный',
         2: 'положительный'
     }
+
     ACCESS_KEY_ID = os.environ.get('ACCESS_KEY_ID')
     SECRET_KEY_ID = os.environ.get('SECRET_KEY_ID')
     ENDPOINT_URL = 'https://s3.gis-1.storage.selcloud.ru'

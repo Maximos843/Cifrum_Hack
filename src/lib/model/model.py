@@ -6,16 +6,17 @@ from transformers import BertTokenizer, BertForSequenceClassification
 from typing import Any
 from pymorphy3 import MorphAnalyzer
 
-from ..utils.s3 import get_model_weights
-from ..utils.preprocess import preprocess_text
-from ..utils.config import Consts
+from src.lib.utils.s3 import get_model_weights
+from src.lib.utils.preprocess import preprocess_text
+from src.lib.utils.config import Consts
 
 
 class Model:
     def __init__(self) -> None:
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.morph = MorphAnalyzer()
-        self.tokenizer = BertTokenizer.from_pretrained('DeepPavlov/rubert-base-cased')
+        self.tokenizer = BertTokenizer.from_pretrained(
+            'DeepPavlov/rubert-base-cased')
         self.model = BertForSequenceClassification.from_pretrained(
             'DeepPavlov/rubert-base-cased',
             num_labels=3,
@@ -49,7 +50,8 @@ class Model:
 
         predicted_class_idx = torch.argmax(probabilities).item()
 
-        best_result = (Consts.id2label[predicted_class_idx], probabilities[0][predicted_class_idx].item())
+        best_result = (Consts.id2label[predicted_class_idx],
+                       probabilities[0][predicted_class_idx].item())
         return results, best_result
 
     def predict(self, text: str) -> tuple[list[tuple[str, float]], tuple[str, float]]:
