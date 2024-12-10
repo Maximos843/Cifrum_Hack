@@ -15,4 +15,4 @@ RUN pip install flake8
 COPY . /app
 
 EXPOSE 8000
-CMD ["fastapi", "run", "./src/app.py", "--port", "8000", "--proxy-headers"]
+CMD ["fastapi", "run", "./src/app.py", "--port", "8000", "--proxy-headers", "--forwarded-allow-ips", "*"]
