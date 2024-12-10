@@ -19,9 +19,9 @@ async def read_root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request, "title": "Home"})
 
 
-def start_service():
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+# def start_service():
+#     uvicorn.run(app, host="0.0.0.0", port=8000)
 
 
-if __name__ == "__main__":
-    start_service()
+# if __name__ == "__main__":
+#     start_service()

@@ -1,9 +1,12 @@
 import os
 from dataclasses import dataclass
+from dotenv import load_dotenv
 
 
 @dataclass
 class Consts:
+    load_dotenv()
+
     id2label = {
         0: 'негативный',
         1: 'нейтральный',
