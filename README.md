@@ -16,6 +16,8 @@ The service also uses a database, which is stored in remote storage, and the con
 Tests were written for the model operation and tests for the api and web service functions.
 
 
+### [Link to our service](http://a0st-ahl7-308g.gw-1a.dockhost.net/)
+
 ### Makefile commands
 Maintain the service development mode with automatic updates when changes are made
 ```
